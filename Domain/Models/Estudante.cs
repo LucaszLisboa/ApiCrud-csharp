@@ -1,4 +1,6 @@
-﻿namespace ApiCrud.Model;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ApiCrud.Domain.Models;
 
 public class Estudante
 {

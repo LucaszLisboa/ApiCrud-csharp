@@ -1,4 +1,6 @@
 using ApiCrud.Data;
+using ApiCrud.Domain.Services;
+using ApiCrud.Services;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 using System.Diagnostics;
@@ -11,6 +13,8 @@ builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<IEstudanteService, EstudanteService>();
+builder.Services.AddScoped<EstudanteRepository>();
 
 var app = builder.Build();
 
@@ -25,5 +29,11 @@ app.UseHttpsRedirection();
 
 
 app.MapControllers();
+
+// Abrir Scalar no navegador
+app.Lifetime.ApplicationStarted.Register(() =>
+{
+    Process.Start(new ProcessStartInfo("https://localhost:7269/scalar/v1") { UseShellExecute = true });
+});
 
 app.Run();

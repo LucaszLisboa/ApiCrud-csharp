@@ -1,4 +1,4 @@
-﻿using ApiCrud.Model;
+﻿using ApiCrud.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 
